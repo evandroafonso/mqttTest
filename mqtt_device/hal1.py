@@ -13,21 +13,21 @@ def temperaturaDefinida():
 
 def statusAquecedor(estado: str):
     if estado == 'on':
-        print('ligou aquecedor')
+        print('Modo automático do aquecedor LIGADO')
         constantes.releHabilitado = True
 
     else:
-        print('desligou o aquecedor')
+        print('Modo automático do aquecedor DESLIGADO')
         constantes.releHabilitado = False
 
 
 def statusRele():
     if constantes.releHabilitado:
         if constantes.temperaturaBase < 30:
-            print('statusRele: aquecedor ligado')
+            print(f'aquecedor ligado: Temperatura atual {constantes.temperaturaBase:,.2f} ºC')
             constantes.releStatus = True
         else:
-            print('statusRele: aquecedor desligado')
+            print(f'aquecedor desligado: Temperatura atual {constantes.temperaturaBase:,.2f} ºC')
             constantes.releStatus = False
     else:
         constantes.releStatus = False
