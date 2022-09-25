@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/mqtt_device.iml" filepath="$PROJECT_DIR$/.idea/mqtt_device.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mqttTest.iml" filepath="$PROJECT_DIR$/.idea/mqttTest.iml" />
     </modules>
   </component>
 </project>
