@@ -1,15 +1,12 @@
 import paho.mqtt.client as mqtt
 import time
-from hal1 import temperaturaDefinida, statusAquecedor, statusRele
-import constantes
+from hal1 import define_temperatura_estufa, define_comportamento_aquecedor, define_comportamento_automatico_aquecedor
 from definicoes1 import user, password, client_id, server, port
-
 
 def mensagem(client, userdata, msg):
     vetor = msg.payload.decode().split(',')
-    statusAquecedor('on' if vetor[1] == '1' else 'off')
+    define_comportamento_aquecedor('on' if vetor[1] == '1' else 'off')
     client.publish(f'v1/{user}/things/{client_id}/response', f'ok,{vetor[0]}')
-
 
 client = mqtt.Client(client_id)
 client.username_pw_set(user, password)
@@ -20,9 +17,8 @@ client.subscribe(f'v1/{user}/things/{client_id}/cmd/2')
 client.loop_start()
 
 while True:
-    client.publish(f'v1/{user}/things/{client_id}/data/0', temperaturaDefinida())
-    statusRele();
-    if(constantes.releStatus == True):
+    client.publish(f'v1/{user}/things/{client_id}/data/0', define_temperatura_estufa())
+    if define_comportamento_automatico_aquecedor():
         client.publish(f'v1/{user}/things/{client_id}/data/1', '1')
     else:
         client.publish(f'v1/{user}/things/{client_id}/data/1', '0')
